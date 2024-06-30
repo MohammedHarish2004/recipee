@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&family=Jacques+Francois+Shadow&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.navbarLogo2 {
+    font-family: "Jacques Francois";
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.bg-orange-500{
+    background-color:#ffa500;
+}
+
+.text-orange-500{
+    color:#ffa500;
+}
+
+.navbarLogo {
+font-family: "Jacques Francois Shadow";
+font-weight: 400;
+font-style: normal;
+}
+
+.navText {
+    font-family: "Jacques Francois";
+    font-weight: 400;
+    font-style: normal;
+  }
