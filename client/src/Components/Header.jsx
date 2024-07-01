@@ -30,6 +30,12 @@ export default function Header() {
           >
             Recipes
           </NavLink>
+          <NavLink 
+            to='/favorite' 
+            className={({ isActive }) => isActive ? 'hover:underline text-black ' : 'hover:underline'}
+          >
+            Favorites
+          </NavLink>
         </div>
 
         <div className='flex justify-center items-center navText'>

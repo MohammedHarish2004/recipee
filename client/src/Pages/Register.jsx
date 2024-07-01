@@ -1,10 +1,20 @@
 import React, { useState } from 'react'
 import { FaEye,FaEyeSlash  } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const [isClicked,setIsClicked] = useState(false)
+  const [formData,setFormData] = useState({
+    username:'',
+    email:'',
+    password:''
+  })
+  const [loading,setLoading] = useState(false)
+  const [error,setError] = useState(false)
+  const navigate = useNavigate()
 
   const handleClick = ()=>{
     setIsClicked(prevState => !prevState)
@@ -21,20 +31,69 @@ export default function Register() {
     }
   }
 
+  const handleChange = (e)=>{
+    setFormData({
+      ...formData,
+      [e.target.id]:e.target.value
+    })
+  }
+
+  const handleSubmit = async(e)=>{
+    e.preventDefault()
+    
+    if(!formData?.username || !formData?.email ){
+      toast.error('All feilds are required',{autoClose:2000})
+    }
+
+     if(formData.password.length < 8){
+      toast.error('Password must be minimum 8 characters')
+    }
+
+    else{
+      try {
+
+        setLoading(true)
+        const res = await fetch('/api/auth/register',{
+          method:"POST",
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(formData)
+        })
+  
+        const data = await res.json()
+  
+        if(data.success === false){
+          toast.error(data.message,{autoClose:1500})
+          setLoading(false)
+          return
+        }
+
+        toast.success('Registered Successfully',{autoClose:1500})
+        navigate('/login')
+      } 
+      
+      catch (error) {
+        toast.error(error.message,{autoClose:1500}) 
+        setLoading(false)
+      }
+    }
+  }
+
   return (
     <div className='w-full max-w-lg p-3 mx-auto'>
       <h1 className='navText text-orange-500 text-3xl py-7 md:text-center'>Register</h1>
-      <form className='flex flex-col gap-7'>
-        <input type="email" id="email" className='w-full bg-slate-100 border-0 rounded-lg' placeholder='Email'  autoComplete='off'/>
-        <input type="text" id="username" className='w-full bg-slate-100 border-0 rounded-lg' placeholder='Username'  autoComplete='off'/>
+      <form className='flex flex-col gap-7' onSubmit={handleSubmit}>
+        <input type="email" id="email" className='w-full bg-slate-100 border-0 rounded-lg' placeholder='Email'  autoComplete='off' onChange={handleChange}/>
+        <input type="text" id="username" className='w-full bg-slate-100 border-0 rounded-lg' placeholder='Username'  autoComplete='off' onChange={handleChange}/>
         <div className='flex justify-center items-center relative'>
-          <input type="password" id="password" className='w-full bg-slate-100 border-0 rounded-lg ' placeholder='Password'  autoComplete='off'/>
+          <input type="password" id="password" className='w-full bg-slate-100 border-0 rounded-lg ' placeholder='Password'  autoComplete='off' onChange={handleChange}/>
             <button type='button' onClick={()=>handleClick()} >
               {isClicked && <FaEyeSlash className='absolute right-3 top-3 cursor-pointer' onClick={showPassword}/>}
               {!isClicked && <FaEye className='absolute right-3 top-3 cursor-pointer' onClick={showPassword}/>}
             </button>
         </div>
-        <button className='bg-orange-500 rounded-lg p-2 text-white font-semibold hover:shadow-lg uppercase'>
+        <button className='bg-orange-500 rounded-lg p-2 text-white font-semibold hover:shadow-lg uppercase focus:shadow-lg'>
           Register
         </button>
       </form>

@@ -1,4 +1,3 @@
-import { Button } from 'flowbite-react'
 import React from 'react'
 import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import Home from './Pages/Home'
@@ -7,6 +6,8 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Details from './Pages/Details'
 import Header from './Components/Header'
+import { ToastContainer } from 'react-toastify';
+
 export default function App() {
   return (
    <BrowserRouter>
@@ -18,6 +19,7 @@ export default function App() {
       <Route path='/login' element={<Login />}/>
       <Route path='/details' element={<Details />}/>
     </Routes>
+    <ToastContainer />
    </BrowserRouter>
   )
 }
