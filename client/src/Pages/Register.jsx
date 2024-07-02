@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Spinner } from "flowbite-react";
 
 export default function Register() {
   const [isClicked,setIsClicked] = useState(false)
@@ -13,7 +14,6 @@ export default function Register() {
     password:''
   })
   const [loading,setLoading] = useState(false)
-  const [error,setError] = useState(false)
   const navigate = useNavigate()
 
   const handleClick = ()=>{
@@ -69,7 +69,8 @@ export default function Register() {
           return
         }
 
-        toast.success('Registered Successfully',{autoClose:1500})
+        setLoading(false)
+        toast.success('Registered Successfully',{autoClose:1000})
         navigate('/login')
       } 
       
@@ -94,7 +95,13 @@ export default function Register() {
             </button>
         </div>
         <button className='bg-orange-500 rounded-lg p-2 text-white font-semibold hover:shadow-lg uppercase focus:shadow-lg'>
-          Register
+          {
+            loading ?
+            <div className='flex gap-2 justify-center items-center'>
+            <Spinner color='gray'/> Loading...
+            </div> 
+            :<span>Register</span>
+          }
         </button>
       </form>
       <div className="flex justify-center items-center gap-3 mt-8 text-gray-500">

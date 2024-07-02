@@ -7,6 +7,8 @@ import Register from './Pages/Register'
 import Details from './Pages/Details'
 import Header from './Components/Header'
 import { ToastContainer } from 'react-toastify';
+import Dashboard from './Pages/Dashboard'
+import PrivateRoute from './Components/PrivateRoute'
 
 export default function App() {
   return (
@@ -18,6 +20,9 @@ export default function App() {
       <Route path='/register' element={<Register />}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/details' element={<Details />}/>
+      <Route element={<PrivateRoute />}>
+        <Route path='/dashboard' element={<Dashboard />}/>
+      </Route>
     </Routes>
     <ToastContainer />
    </BrowserRouter>
