@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "flowbite-react";
 import { useDispatch } from 'react-redux';
 import { signInFailure, signInStart, signInSuccess } from '../redux/userSlice';
+import OAuth from '../Components/OAuth';
 
 export default function Register() {
   const [isClicked,setIsClicked] = useState(false)
@@ -110,9 +111,7 @@ export default function Register() {
         <p className='border w-[50%] border-gray-500'></p>
       </div>
       <div className='flex flex-col items-center justify-center mt-4'>
-        <div className='flex justify-center items-center border-2 border-gray-800 rounded-full w-10 h-10 cursor-pointer hover:bg-gray-200'>
-          <FcGoogle className='w-7 h-7'/>
-        </div>
+        <OAuth />
         <div className='flex mt-5 justify-center items-center gap-3'>
           <span className='text-gray-700'>Don't have an account?</span>
           <Link to='/register' className='font-semibold text-gray-700 hover:underline cursor-pointer'>Register</Link>
