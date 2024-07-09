@@ -48,7 +48,7 @@ export default function DashSidebar() {
     })
   }
   return (
-    <Sidebar aria-label="Dashboard sidebar">
+    <Sidebar aria-label="Dashboard sidebar" >
     <Sidebar.Items>
       <Sidebar.ItemGroup>
         <Sidebar.Item as={Link} to={'/dashboard?tab=dash'} active={tab == "dash"} icon={HiChartPie}>
@@ -57,8 +57,8 @@ export default function DashSidebar() {
         <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} active={tab=='cuisine'} icon={HiShoppingBag}>
           Cuisine
         </Sidebar.Item>
-        <Sidebar.Item  icon={HiArrowSmRight}>
-         <span onClick={handleLogout} className='cursor-pointer'>Logout</span>
+        <Sidebar.Item onClick={handleLogout} className='cursor-pointer' icon={HiArrowSmRight}>
+         <span>Logout</span>
         </Sidebar.Item>
       </Sidebar.ItemGroup>
     </Sidebar.Items>

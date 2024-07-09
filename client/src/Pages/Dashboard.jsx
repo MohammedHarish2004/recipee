@@ -20,17 +20,15 @@ export default function Dashboard() {
   },[location.search])
  
   return (
-    <div className='flex flex-col md:flex-row justify-start items-start md:justify-normal md:items-stretch gap-3 min-h-screen'>
+    <div className='flex flex-col md:flex-row min-h-screen'>
       <div className='hidden md:inline'>
           <DashSidebar />
       </div>
       <div className='md:hidden'>
         <DashMobileSidebar />
       </div>
-      <div className='ms-3 sm:ms-10 mt-10'>
         {currentUser.isAdmin && tab=='dash' && <Dash /> }
         {currentUser.isAdmin && tab=='cuisine' && <DashCuisine /> }
-      </div>
     </div>
   )
 }
