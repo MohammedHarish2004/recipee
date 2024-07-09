@@ -1,4 +1,5 @@
 import Cuisine from "../models/cuisine.model.js"
+import { errorHandler } from "../utils/error.js";
 
 export const create = async(req,res,next)=>{
 
@@ -29,3 +30,50 @@ export const getCuisine = async (req,res,next)=>{
         next(error)
     }
 }
+
+export const editCuisine = async (req, res, next) => {
+    try {
+      const cuisine = await Cuisine.findById(req.params.id);
+      if (!cuisine) return next(errorHandler(404, 'Cuisine not found!'));
+      
+      const { name } = req.body;
+      let imagePath = cuisine.image;
+
+      if (req.file) {
+        imagePath = `uploads/${req.file.filename}`;
+    }
+
+      const updatedCuisine = await Cuisine.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set:{
+                name:name,
+                image: imagePath
+            }
+        },
+        { new: true,runValidators:true} 
+      );
+
+      await updatedCuisine.save()
+  
+      res.status(200).json(updatedCuisine);
+
+    } catch (error) {
+      next(error); 
+    }
+  };
+
+export const deleteCuisine = async (req, res, next) => {
+    try {
+      const cuisine = await Cuisine.findById(req.params.id);
+      if (!cuisine) return next(errorHandler(404, 'Cuisine not found!'));
+      
+      await Cuisine.findByIdAndDelete(req.params.id);
+
+      res.status(200).json("Cuisine deleted successfully");
+
+    } catch (error) {
+      next(error); 
+    }
+  };
+  
