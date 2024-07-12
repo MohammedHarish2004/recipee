@@ -1,7 +1,7 @@
-  import { Label, Spinner } from 'flowbite-react';
-  import React, { useEffect, useState } from 'react';
-  import { toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { Label, Spinner } from 'flowbite-react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 
   export default function DashCuisine() {
@@ -214,11 +214,12 @@ const handleDelete = (id,name)=>{
                   <tr key={item._id}>
                     <td>{index + 1}</td>
                     <td>{item.name}</td>
-                    <td   >
+                    <td align='center'>
                       <img
                         src={`http://localhost:3000/${item.image}`}
                         alt={item.name}
-                        style={{ width: '100px', height: 'auto' }}
+                        style={{ width: '100px', height: 'auto'}}
+                        className=''
                       />
                     </td>  
                     <td>{new Date(item.createdAt).toLocaleDateString()}</td>

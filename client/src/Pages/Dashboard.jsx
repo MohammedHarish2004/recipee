@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom'
 import Dash from '../Dashboard/Dash'
 import DashCuisine from '../Dashboard/DashCuisine'
 import DashMobileSidebar from '../Dashboard/DashMobileSidebar'
+import DashRecipes from '../Dashboard/DashRecipes'
+import RecipeCreate from '../Dashboard/RecipeCreate'
 
 export default function Dashboard() {
   const {currentUser} = useSelector(state=>state.user)
@@ -29,6 +31,8 @@ export default function Dashboard() {
       </div>
         {currentUser.isAdmin && tab=='dash' && <Dash /> }
         {currentUser.isAdmin && tab=='cuisine' && <DashCuisine /> }
+        {currentUser.isAdmin && tab=='recipes' && <DashRecipes /> }
+        {currentUser.isAdmin && tab=='create-recipes' && <RecipeCreate /> }
     </div>
   )
 }

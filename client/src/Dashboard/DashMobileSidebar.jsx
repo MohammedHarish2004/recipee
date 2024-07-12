@@ -1,14 +1,13 @@
-import { Button, Drawer, Sidebar } from 'flowbite-react';
+import { Drawer, Sidebar } from 'flowbite-react';
 import React, { useEffect, useState } from 'react'
 import { CgMenuGridR } from "react-icons/cg";
-import { HiArrowSmRight, HiChartPie, HiShoppingBag } from 'react-icons/hi';
-import { useSelector } from 'react-redux';
+import { HiArrowSmRight, HiChartPie } from 'react-icons/hi';
 import { Link, useLocation } from 'react-router-dom';
+import { IoRestaurant,IoFastFood  } from "react-icons/io5";
 
 export default function DashMobileSidebar() {
 
     const [isOpen, setIsOpen] = useState(false);
-    const {currentUser} = useSelector(state=>state.user)
     const handleClose = () => setIsOpen(false);
     const [tab,setTab] = useState()
     const location = useLocation()
@@ -61,8 +60,11 @@ export default function DashMobileSidebar() {
                 <Sidebar.Item as={Link} to={'/dashboard?tab=dash'} onClick={()=>setIsOpen(false)} active={tab == "dash"} icon={HiChartPie}>
                 Dashboard
                 </Sidebar.Item>
-                <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} onClick={()=>setIsOpen(false)} active={tab=='cuisine'} icon={HiShoppingBag}>
+                <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} onClick={()=>setIsOpen(false)} active={tab=='cuisine'} icon={IoRestaurant}>
                 Cuisine
+                </Sidebar.Item>
+                <Sidebar.Item as={Link}  to={'/dashboard?tab=recipes'} active={tab=='recipes'} icon={IoFastFood}>
+                  Recipes
                 </Sidebar.Item>
                 <Sidebar.Item  icon={HiArrowSmRight}>
                 <span onClick={handleLogout} className='cursor-pointer'>Logout</span>

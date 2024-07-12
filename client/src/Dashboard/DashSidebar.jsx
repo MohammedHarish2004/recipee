@@ -1,16 +1,13 @@
 import { Sidebar } from 'flowbite-react'
 import { useEffect, useState } from 'react'
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi"
-import { useSelector } from 'react-redux'
+import { HiArrowSmRight, HiChartPie } from "react-icons/hi"
 import { Link, useLocation } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { IoRestaurant,IoFastFood  } from "react-icons/io5";
 
 export default function DashSidebar() {
 
-    const {currentUser} = useSelector(state=>state.user)
-
   const [tab,setTab] = useState()
-
   const location = useLocation()
   
   useEffect(()=>{
@@ -54,8 +51,11 @@ export default function DashSidebar() {
         <Sidebar.Item as={Link} to={'/dashboard?tab=dash'} active={tab == "dash"} icon={HiChartPie}>
           Dashboard
         </Sidebar.Item>
-        <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} active={tab=='cuisine'} icon={HiShoppingBag}>
+        <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} active={tab=='cuisine'} icon={IoRestaurant}>
           Cuisine
+        </Sidebar.Item>
+        <Sidebar.Item as={Link}  to={'/dashboard?tab=recipes'} active={tab=='recipes'} icon={IoFastFood}>
+          Recipes
         </Sidebar.Item>
         <Sidebar.Item onClick={handleLogout} className='cursor-pointer' icon={HiArrowSmRight}>
          <span>Logout</span>
