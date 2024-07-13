@@ -5,6 +5,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.route.js';
 import cuisineRouter from './routes/cuisine.route.js';
+import recipeRouter from './routes/recipe.route.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use('/uploads', express.static('uploads')); 
 app.use('/api/cuisine', cuisineRouter); 
 app.use('/api/auth', authRouter); 
+app.use('/api/recipe', recipeRouter); 
 
 // Error handling middleware
 app.use((err, req, res, next) => {

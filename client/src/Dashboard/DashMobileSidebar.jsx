@@ -63,7 +63,7 @@ export default function DashMobileSidebar() {
                 <Sidebar.Item as={Link}  to={'/dashboard?tab=cuisine'} onClick={()=>setIsOpen(false)} active={tab=='cuisine'} icon={IoRestaurant}>
                 Cuisine
                 </Sidebar.Item>
-                <Sidebar.Item as={Link}  to={'/dashboard?tab=recipes'} active={tab=='recipes'} icon={IoFastFood}>
+                <Sidebar.Item as={Link}  to={'/dashboard?tab=recipes'} onClick={()=>setIsOpen(false)} active={tab=='recipes'} icon={IoFastFood}>
                   Recipes
                 </Sidebar.Item>
                 <Sidebar.Item  icon={HiArrowSmRight}>

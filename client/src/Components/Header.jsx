@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { RiMenu2Line } from "react-icons/ri";
 import { Drawer, Dropdown } from 'flowbite-react';
 import {useDispatch, useSelector} from 'react-redux'
@@ -16,6 +16,7 @@ export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const {currentUser} = useSelector(state=>state.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleClose = () => setIsOpen(false);
     
     const handleLogout = ()=>{
